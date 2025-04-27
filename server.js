@@ -14,6 +14,9 @@ app.use(express.json());
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
+const taskRoutes = require('./routes/task.routes');
+app.use('/api/task', taskRoutes);
+
 // DB Connect
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
