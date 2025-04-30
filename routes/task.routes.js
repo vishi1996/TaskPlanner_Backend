@@ -29,7 +29,7 @@ router.post('/addTask', async (req, res) => {
 // Edit Task route
 router.put('/editTask/:id', async (req, res) => {
     const { id } = req.params;
-    const { title, description, status, priority, dueDate } = req.body;
+    const { title, description, status, priority, dueDate, comment, attachment } = req.body;
 
     try {
         const task = await Task.findById(id);
@@ -38,11 +38,13 @@ router.put('/editTask/:id', async (req, res) => {
             return res.status(404).json({ error: 'Task not found' });
         }
 
-        task.title = title || task.title;
-        task.description = description || task.description;
-        task.status = status || task.status;
-        task.priority = priority || task.priority;
-        task.dueDate = dueDate || task.dueDate;
+        task.title = title ?? task.title;
+        task.description = description ?? task.description;
+        task.status = status ?? task.status;
+        task.priority = priority ?? task.priority;
+        task.dueDate = dueDate ?? task.dueDate;
+        task.comment = comment ?? task.comment;
+        task.attachment = attachment ?? task.attachment;
 
         await task.save();
 

@@ -5,7 +5,9 @@ const taskSchema = new mongoose.Schema({
     description: String,
     status: String,
     priority: String,
-    dueDate: Date
+    dueDate: Date,
+    comment: String,
+    attachment: String
 })
 
 module.exports = mongoose.model('Task', taskSchema);
